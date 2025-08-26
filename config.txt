@@ -1,0 +1,25 @@
+* Configuração do Git *
+git config --global user.name bgsana
+git config --global user.email bgs.ana08@gmail.com
+
+------------------------------------------------------
+
+* Listar os SDKs (versão) *
+dotnet --list-sdks
+
+------------------------------------------------------
+
+* Help *
+dotnet --h
+
+------------------------------------------------------
+
+* Criando um projeto MVC *
+dotnet new mvc -o Pokedex
+dotnet new gitignore -> Para criar git ignore caso esqueça
+
+------------------------------------------------------
+
+* Executar projeto *
+cd Pokedex
+dotnet watch run
