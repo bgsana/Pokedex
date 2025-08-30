@@ -10,11 +10,13 @@ public class Tipo
     public uint Id { get; set; }
 
     [StringLength(30)]
-    [Required(ErrorMessage = "Deu errado :(. Por favor, informe o nome)")]
+    [Required(ErrorMessage = "Deu errado :( Por favor, informe o nome)")]
 
     public string Nome { get; set; }
 
     [StringLength(25)]
     public string Cor { get; set; }
+
+    public ICollection<PokemonTipo> Pokemons { get; set; }
 
 }

@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Pokedex.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Configurando serviços de contexto do db
+var conexao = builder.Configuration.GetConnectionString("Conexao");
+var versao = ServerVersion.AutoDetect(conexao);
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseMySql(conexao, versao)
+);
 
 var app = builder.Build();
 

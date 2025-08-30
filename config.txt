@@ -23,3 +23,10 @@ dotnet new gitignore -> Para criar git ignore caso esqueça
 * Executar projeto *
 cd Pokedex
 dotnet watch run
+
+------------------------------------------------------
+
+* Adicionando pacotes *
+cd Pokedex
+dotnet add package Microsoft.EntityFrameworkCore --version 9.0.8
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 9.0.0
