@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pokedex.Data;
 using Pokedex.Models;
 
@@ -19,8 +20,18 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var pokemons = _db.Pokemons.ToList();
+        var pokemons = _db.Pokemons
+            .Include(p => p.Regiao)
+            .Include(p => p.Genero)
+            .Include(p => p.Tipos)
+            .ThenInclude(t => t.Tipo)
+            .ToList();
         return View(pokemons);
+    }
+
+    public IActionResult Details (uint id)
+    {
+        return View();
     }
 
     public IActionResult Privacy()

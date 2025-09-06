@@ -1,6 +1,9 @@
 ﻿@model List<Pokemon>
 @{
     ViewData["Title"] = "Home Page";
+    string BackgroundColor(string cor){
+        return cor.Replace("1)", "0.75)");
+    }
 }
 
 <div class="pt-5 container">
@@ -55,18 +58,23 @@
         @foreach (var pokemon in Model)
         {
             <!-- Card Pokemon - Inicio -->
-            <div class="col">
-                <a href="#" class="text-decoration-none">
-                    <div class="card" style="background-color: rgba(119, 204, 85, 0.75)">
-                        <img src="@pokemon.Imagem" class="card-img-top" alt="Bulbasaur" />
+            <div class="col poke @string.Join(' ', pokemon.Tipos.Select(t => t.Tipo.Nome))">
+                <a asp-action="Details" asp-route-id="@pokemon.Numero" class="text-decoration-none">
+                    <div class="card" style="background-color: @BackgroundColor(pokemon.Tipos.ToArray()[0].Tipo.Cor)">
+                        <img src="@pokemon.Imagem" class="card-img-top" alt="@pokemon.Nome" />
                         <div class="card-body">
-                            <h5 class="card-text mb-1 text-white">@pokemon.Numero</h5>
+                            <h5 class="card-text mb-1 text-white">Nº @pokemon.Numero.ToString("000")</h5>
                             <h3 class="card-title text-dark">@pokemon.Nome</h3>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex gap-2 my-2">
-                                    <a href="#" class="btn text-white"
-                                        style="background-color:rgba(119, 204, 85, 1)">Planta</a>
-                                    <a href="#" class="btn text-white" style="background-color:#a59">Venenoso</a>
+                                    @foreach (var tipo in pokemon.Tipos)
+                                    {
+                                        <a href="#" class="btn text-white"
+                                            style="background-color: @tipo.Tipo.Cor">
+                                            @tipo.Tipo.Nome
+                                        </a>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>
