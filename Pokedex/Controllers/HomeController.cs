@@ -48,7 +48,7 @@ public class HomeController : Controller
                 .OrderByDescending(p => p.Numero)
                 .FirstOrDefault(p => p.Numero < id),
             Proximo = _db.Pokemons
-                .OrderByDescending(p => p.Numero)
+                .OrderBy(p => p.Numero)
                 .FirstOrDefault(p => p.Numero > id)
         };
         return View(detail);
